@@ -1,7 +1,8 @@
 Sprunges
 --------
 
-A bash script to interact with the pastebin service ()[https://sprunge.us/].
+A bash script to interact with the pastebin service
+[sprunge.us](https://sprunge.us/).
 
 
 ### Usage
@@ -28,18 +29,20 @@ $ sprunges -h
 
 Requires `curl`.
 
-Set execute permissions.  Make a symlink to the script.  If needed, create the
-folder `~/.local/bin` and add it to your `$PATH`.
+Clone.  Set executable permissions.  Make a symlink to the script. (You have
+`~/.local/bin/` in yout path).
 
 ```bash
-git clone
+git clone https://github.com/guilleng/sprunges
 chmod +x sprunges/script.sh
 ln -s "$(pwd)/sprunges/script.sh" ~/.local/bin/sprunges
 ```
 
+Or [download as zip](https://github.com/guilleng/sprunges/zipball/master).
+
+---
 
 ### Examples:
-
 
 ```bash
 $ sprunges -f lorem.txt
