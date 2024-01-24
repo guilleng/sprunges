@@ -1,8 +1,8 @@
 Sprunges
 --------
 
-A bash script to interact with the pastebin service
-[sprunge.us](https://sprunge.us/).
+A script that interacts with the pastebin service
+[sprunge.us](https://sprunge.us/). 
 
 
 ### Usage

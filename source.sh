@@ -1,6 +1,4 @@
-#!/bin/env bash
-
-# Set a temp file that keep track of pastebins
+# Set a temp file that keep track of pastebin
 sprunges="/tmp/sprunges/${USER}.$(date +%d%m%Y)"
 
 if [ ! -d "/tmp/sprunges" ]; then
@@ -14,7 +12,7 @@ fi
 # Get the number of lines in file
 n=$(wc -l < "${sprunges}")
 
-function usage() { 
+usage() { 
   cat <<EOF
     Usage: $(basename "${0}") [options] <value>
 
@@ -33,7 +31,7 @@ EOF
   exit 0
 }
 
-function list_table() {
+list_table() {
   if [ -s "${sprunges}" ]; then
     cat "${sprunges}"
   else
@@ -43,7 +41,7 @@ function list_table() {
 }
 
 # Exits 0 for non-negative integers
-function is_number() {
+is_number() {
   case ${1} in 
     ''|*[!0-9]*) 
       false ;;
@@ -52,8 +50,8 @@ function is_number() {
   esac
 }
 
-function retrieve_by_index() {
-  ((fetch++))
+retrieve_by_index() {
+  fetch=$(expr "$fetch" + 1)
   if [ "${fetch}" -le "${n}" ]; then 
     url=$(awk -v line="${fetch}" '{if (NR == line) print $2}' "${sprunges}")
     curl "${url}"
@@ -62,7 +60,7 @@ function retrieve_by_index() {
   fi
 }
 
-function retrieve() {
+retrieve() {
   if is_number "${fetch}"; then
     retrieve_by_index
   else
@@ -70,7 +68,7 @@ function retrieve() {
   fi
 }
 
-function upload_data() {
+upload_data() {
   if [ -z "${input}" ]; then
     input=/dev/stdin
   fi
@@ -83,7 +81,7 @@ function upload_data() {
   fi
 
   if [ -z "${no_save}" ]; then
-    echo -e "[${n}]\t ${url}\t ${description}\t" >> "${sprunges}"
+    printf "[%s]\t%s\t%s\t\n" "${n}" "${url}" "${description}" >> "${sprunges}"
   fi
   if [ -n "${show_url}" ]; then
     echo "${url}"
